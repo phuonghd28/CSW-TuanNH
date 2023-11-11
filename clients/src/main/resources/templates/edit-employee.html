@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Employee</title>
+</head>
+<body>
+<form th:action="@{/employee/update/{id}(id=${employee.id})}" method="post">
+    <label>Name:</label>
+    <input type="text" name="name" th:value="${employee.name}">
+    <label>Salary: </label>
+    <input type="number" name="salary" th:value="${employee.salary}">
+    <input type="hidden" name="id" th:value="${employee.id}">
+    <button type="submit">Update</button>
+</form>
+</body>
+</html>

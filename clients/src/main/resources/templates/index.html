@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Employee</title>
+</head>
+<body>
+<a href="/employee/create">Create Employee</a>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="item : ${employees}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.salary}"></td>
+        <td>
+            <a th:href="@{/employee/edit/{id}(id=${item.id})}"> Edit </a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
