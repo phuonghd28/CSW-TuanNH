@@ -59,12 +59,12 @@ public class EmployeeController {
         u.setName(name);
         u.setSalary(salary);
 
-        String jsonUser = convertToJson(u);
+        String json = convertToJson(u);
 
         Client client = createJerseyRestClient();
         WebTarget target = client.target(REST_API_EMPLOYEE);
         Response response = target.request(MediaType.APPLICATION_JSON_TYPE)
-                .post(Entity.entity(jsonUser, MediaType.APPLICATION_JSON));
+                .post(Entity.entity(json, MediaType.APPLICATION_JSON));
         return "redirect:/employee";
     }
 
@@ -79,11 +79,18 @@ public class EmployeeController {
 
     @PostMapping(value = "/employee/update/{id}")
     public String update(@PathVariable(value = "id") Integer id,
-                         @RequestParam Employee u) {
+                         @RequestParam String name, @RequestParam Double salary) {
+
+        Employee u = new Employee();
+        u.setName(name);
+        u.setSalary(salary);
+
+        String json = convertToJson(u);
+
         Client client = createJerseyRestClient();
         WebTarget target = client.target(REST_API_EMPLOYEE + '/' + id);
         Response response = target.request(MediaType.APPLICATION_JSON_TYPE)
-                .put(Entity.entity(u, MediaType.APPLICATION_JSON));
+                .put(Entity.entity(json, MediaType.APPLICATION_JSON));
         return "redirect:/employee";
     }
 
